@@ -1,14 +1,17 @@
 package com.winery.breakdowns.api.db;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@Slf4j
 public class InMemoryWineRepoImpl implements WineRepo{
     public Map<String, WineDto> store;
 
     public InMemoryWineRepoImpl(){
+        log.info("Setup data in memory");
         var tempMap = new HashMap<String, WineDto>();
 
         var wine11YVCHAR001 = new WineDto(
@@ -63,13 +66,16 @@ public class InMemoryWineRepoImpl implements WineRepo{
                         new ComponentDto(5.0, 2013, "Cabernet", "Mornington")
                 )
         );
-        tempMap.put(wine12YVCHAR001.lotCode(), wine11YVCHAR001);
+        tempMap.put(wine15MPPN002VK.lotCode(), wine15MPPN002VK);
 
-        store = Collections.unmodifiableMap(tempMap);
+        this.store = Collections.unmodifiableMap(tempMap);
+
+        log.info("Has loaded " + this.store.size() + " wines");
     }
 
     @Override
     public Optional<WineDto> getWineByLotCode(String lotCode) {
+        log.info("Looking up wine by lotCode: " + lotCode);
         return Optional.ofNullable(store.get(lotCode));
 
     }
