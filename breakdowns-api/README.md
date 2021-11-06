@@ -2,7 +2,7 @@
 
 ## Run locally
 
-This spring boot app is built atop of JDK16. Please make sure you run the command in JDK16 environment.
+This spring boot app is built atop of JDK 17. Please make sure you have JDK 17 installed.
 
 You can run the api directly in terminal by using following command
 
@@ -10,11 +10,11 @@ You can run the api directly in terminal by using following command
 ./gradlew bootRun
 ```
 
-A Dockerfile is supplied and you can also run this in container with this command
+Alternatively, a Dockerfile is supplied and you can build a docker image with following command
 
 ```bash
-./gradlew build
 docker build . -t lichader/breakdown-api
+
 docker run -p 8080:8080 lichader/breakdown-api
 ```
 
